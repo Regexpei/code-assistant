@@ -494,4 +494,9 @@ public class SysUserServiceImpl implements ISysUserService {
         }
         return successMsg.toString();
     }
+
+    @Override
+    public List<SysUser> selectUserByRoleKey(String roleKey) {
+        return userMapper.selectUserByRoleKey(roleKey);
+    }
 }

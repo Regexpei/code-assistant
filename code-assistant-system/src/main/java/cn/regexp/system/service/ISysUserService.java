@@ -203,4 +203,12 @@ public interface ISysUserService {
      * @return 结果
      */
     public String importUser(List<SysUser> userList, Boolean isUpdateSupport, String operName);
+
+    /**
+     * 通过角色key查询用户
+     *
+     * @param roleKey 角色 key
+     * @return 用户信息
+     */
+    List<SysUser> selectUserByRoleKey(String roleKey);
 }

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.regexp.plugin.mapper.PluginIssueMapper">
+
+    <resultMap type="PluginIssue" id="PluginIssueResult">
+        <result property="id" column="id"/>
+        <result property="gitUrl" column="gitUrl"/>
+        <result property="projectName" column="projectName"/>
+        <result property="branchName" column="branchName"/>
+        <result property="assignee" column="assignee"/>
+        <result property="marker" column="marker"/>
+        <result property="issueType" column="issueType"/>
+        <result property="issueLevel" column="issue_level"/>
+        <result property="issueStatus" column="issueStatus"/>
+        <result property="priority" column="priority"/>
+        <result property="startPos" column="startPos"/>
+        <result property="endPos" column="endPos"/>
+        <result property="filePath" column="filePath"/>
+        <result property="codeSegment" column="codeSegment"/>
+        <result property="issueDetail" column="issueDetail"/>
+        <result property="suggestion" column="suggestion"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <sql id="selectPluginIssueVo">
+        select id, gitUrl, projectName, branchName, assignee, marker, issueType, issue_level, issueStatus, priority,
+        startPos, endPos, filePath, codeSegment, issueDetail, suggestion, create_by, create_time, update_by, update_time
+        from plugin_issue
+    </sql>
+
+    <select id="selectPluginIssueList" parameterType="PluginIssue" resultMap="PluginIssueResult">
+        <include refid="selectPluginIssueVo"/>
+        <where>
+            <if test="gitUrl != null  and gitUrl != ''">
+                and gitUrl = #{gitUrl}
+            </if>
+            <if test="projectName != null  and projectName != ''">
+                and projectName like concat('%', #{projectName}, '%')
+            </if>
+            <if test="branchName != null  and branchName != ''">
+                and branchName like concat('%', #{branchName}, '%')
+            </if>
+            <if test="assignee != null  and assignee != ''">
+                and assignee = #{assignee}
+            </if>
+            <if test="marker != null  and marker != ''">
+                and marker = #{marker}
+            </if>
+            <if test="issueType != null  and issueType != ''">
+                and issueType = #{issueType}
+            </if>
+            <if test="issueLevel != null  and issueLevel != ''">
+                and issue_level = #{issueLevel}
+            </if>
+            <if test="issueStatus != null  and issueStatus != ''">
+                and issueStatus = #{issueStatus}
+            </if>
+            <if test="priority != null  and priority != ''">
+                and priority = #{priority}
+            </if>
+            <if test="startPos != null  and startPos != ''">
+                and startPos = #{startPos}
+            </if>
+            <if test="endPos != null  and endPos != ''">
+                and endPos = #{endPos}
+            </if>
+            <if test="filePath != null  and filePath != ''">
+                and filePath = #{filePath}
+            </if>
+            <if test="codeSegment != null  and codeSegment != ''">
+                and codeSegment = #{codeSegment}
+            </if>
+            <if test="issueDetail != null  and issueDetail != ''">
+                and issueDetail = #{issueDetail}
+            </if>
+            <if test="suggestion != null  and suggestion != ''">
+                and suggestion = #{suggestion}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectPluginIssueById" parameterType="String"
+            resultMap="PluginIssueResult">
+        <include refid="selectPluginIssueVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertPluginIssue" parameterType="PluginIssue" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into plugin_issue
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="gitUrl != null">gitUrl,
+            </if>
+            <if test="projectName != null">projectName,
+            </if>
+            <if test="branchName != null">branchName,
+            </if>
+            <if test="assignee != null">assignee,
+            </if>
+            <if test="marker != null">marker,
+            </if>
+            <if test="issueType != null and issueType != ''">issueType,
+            </if>
+            <if test="issueLevel != null and issueLevel != ''">issue_level,
+            </if>
+            <if test="issueStatus != null and issueStatus != ''">issueStatus,
+            </if>
+            <if test="priority != null and priority != ''">priority,
+            </if>
+            <if test="startPos != null and startPos != ''">startPos,
+            </if>
+            <if test="endPos != null and endPos != ''">endPos,
+            </if>
+            <if test="filePath != null and filePath != ''">filePath,
+            </if>
+            <if test="codeSegment != null and codeSegment != ''">codeSegment,
+            </if>
+            <if test="issueDetail != null">issueDetail,
+            </if>
+            <if test="suggestion != null">suggestion,
+            </if>
+            <if test="createBy != null and createBy != ''">create_by,
+            </if>
+            <if test="createTime != null">create_time,
+            </if>
+            <if test="updateBy != null and updateBy != ''">update_by,
+            </if>
+            <if test="updateTime != null">update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="gitUrl != null">#{gitUrl},
+            </if>
+            <if test="projectName != null">#{projectName},
+            </if>
+            <if test="branchName != null">#{branchName},
+            </if>
+            <if test="assignee != null">#{assignee},
+            </if>
+            <if test="marker != null">#{marker},
+            </if>
+            <if test="issueType != null and issueType != ''">#{issueType},
+            </if>
+            <if test="issueLevel != null and issueLevel != ''">#{issueLevel},
+            </if>
+            <if test="issueStatus != null and issueStatus != ''">#{issueStatus},
+            </if>
+            <if test="priority != null and priority != ''">#{priority},
+            </if>
+            <if test="startPos != null and startPos != ''">#{startPos},
+            </if>
+            <if test="endPos != null and endPos != ''">#{endPos},
+            </if>
+            <if test="filePath != null and filePath != ''">#{filePath},
+            </if>
+            <if test="codeSegment != null and codeSegment != ''">#{codeSegment},
+            </if>
+            <if test="issueDetail != null">#{issueDetail},
+            </if>
+            <if test="suggestion != null">#{suggestion},
+            </if>
+            <if test="createBy != null and createBy != ''">#{createBy},
+            </if>
+            <if test="createTime != null">#{createTime},
+            </if>
+            <if test="updateBy != null and updateBy != ''">#{updateBy},
+            </if>
+            <if test="updateTime != null">#{updateTime},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updatePluginIssue" parameterType="PluginIssue">
+        update plugin_issue
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="gitUrl != null">gitUrl =
+                #{gitUrl},
+            </if>
+            <if test="projectName != null">projectName =
+                #{projectName},
+            </if>
+            <if test="branchName != null">branchName =
+                #{branchName},
+            </if>
+            <if test="assignee != null">assignee =
+                #{assignee},
+            </if>
+            <if test="marker != null">marker =
+                #{marker},
+            </if>
+            <if test="issueType != null and issueType != ''">issueType =
+                #{issueType},
+            </if>
+            <if test="issueLevel != null and issueLevel != ''">issue_level =
+                #{issueLevel},
+            </if>
+            <if test="issueStatus != null and issueStatus != ''">issueStatus =
+                #{issueStatus},
+            </if>
+            <if test="priority != null and priority != ''">priority =
+                #{priority},
+            </if>
+            <if test="startPos != null and startPos != ''">startPos =
+                #{startPos},
+            </if>
+            <if test="endPos != null and endPos != ''">endPos =
+                #{endPos},
+            </if>
+            <if test="filePath != null and filePath != ''">filePath =
+                #{filePath},
+            </if>
+            <if test="codeSegment != null and codeSegment != ''">codeSegment =
+                #{codeSegment},
+            </if>
+            <if test="issueDetail != null">issueDetail =
+                #{issueDetail},
+            </if>
+            <if test="suggestion != null">suggestion =
+                #{suggestion},
+            </if>
+            <if test="createBy != null and createBy != ''">create_by =
+                #{createBy},
+            </if>
+            <if test="createTime != null">create_time =
+                #{createTime},
+            </if>
+            <if test="updateBy != null and updateBy != ''">update_by =
+                #{updateBy},
+            </if>
+            <if test="updateTime != null">update_time =
+                #{updateTime},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletePluginIssueById" parameterType="String">
+        delete from plugin_issue where id = #{id}
+    </delete>
+
+    <delete id="deletePluginIssueByIds" parameterType="String">
+        delete from plugin_issue where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
