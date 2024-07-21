@@ -6,13 +6,13 @@
 
     <groupId>cn.regexp</groupId>
     <artifactId>code-assistant</artifactId>
-    <version>3.8.8</version>
+    <version>1.0.0</version>
 
     <name>code-assistant</name>
     <description>代码助手</description>
 
     <properties>
-        <code.assistant.version>3.8.8</code.assistant.version>
+        <code.assistant.version>1.0.0</code.assistant.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -181,6 +181,12 @@
                 <version>${code.assistant.version}</version>
             </dependency>
 
+            <!-- 插件模块-->
+            <dependency>
+                <groupId>cn.regexp</groupId>
+                <artifactId>code-assistant-plugin</artifactId>
+                <version>${code.assistant.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -191,6 +197,7 @@
         <module>code-assistant-quartz</module>
         <module>code-assistant-generator</module>
         <module>code-assistant-common</module>
+        <module>code-assistant-plugin</module>
     </modules>
     <packaging>pom</packaging>
 

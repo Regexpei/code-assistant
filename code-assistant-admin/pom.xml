@@ -5,7 +5,7 @@
     <parent>
         <artifactId>code-assistant</artifactId>
         <groupId>cn.regexp</groupId>
-        <version>3.8.8</version>
+        <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
@@ -59,6 +59,12 @@
         <dependency>
             <groupId>cn.regexp</groupId>
             <artifactId>code-assistant-generator</artifactId>
+        </dependency>
+
+        <!-- 插件模块 -->
+        <dependency>
+            <groupId>cn.regexp</groupId>
+            <artifactId>code-assistant-plugin</artifactId>
         </dependency>
 
     </dependencies>
