@@ -65,7 +65,7 @@ public class PluginIssueController extends BaseController {
      */
     @PreAuthorize("@ss.hasPermi('plugin:issue:add')")
     @Log(title = "插件登记问题", businessType = BusinessType.INSERT)
-    @PostMapping
+    @PostMapping("/add")
     public AjaxResult add(@RequestBody PluginIssue pluginIssue) {
         return toAjax(pluginIssueService.insertPluginIssue(pluginIssue));
     }

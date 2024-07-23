@@ -1,6 +1,7 @@
 package cn.regexp.plugin.service.impl;
 
 import cn.regexp.common.utils.DateUtils;
+import cn.regexp.common.utils.SecurityUtils;
 import cn.regexp.plugin.domain.PluginIssue;
 import cn.regexp.plugin.mapper.PluginIssueMapper;
 import cn.regexp.plugin.service.IPluginIssueService;
@@ -50,6 +51,8 @@ public class PluginIssueServiceImpl implements IPluginIssueService {
      */
     @Override
     public int insertPluginIssue(PluginIssue pluginIssue) {
+        pluginIssue.setCreateBy(SecurityUtils.getUsername());
+        pluginIssue.setUpdateBy(SecurityUtils.getUsername());
         pluginIssue.setCreateTime(DateUtils.getNowDate());
         return pluginIssueMapper.insertPluginIssue(pluginIssue);
     }
@@ -62,6 +65,7 @@ public class PluginIssueServiceImpl implements IPluginIssueService {
      */
     @Override
     public int updatePluginIssue(PluginIssue pluginIssue) {
+        pluginIssue.setUpdateBy(SecurityUtils.getUsername());
         pluginIssue.setUpdateTime(DateUtils.getNowDate());
         return pluginIssueMapper.updatePluginIssue(pluginIssue);
     }
