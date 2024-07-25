@@ -43,16 +43,10 @@ public class PluginUserController extends BaseController {
         return success(token);
     }
 
-    @GetMapping("getDevelopers")
-    public AjaxResult getDevelopers() {
-        List<SysUser> developers = userService.selectUserByRoleKey("developer");
-        return success(mapToPluginUser(developers));
-    }
-
-    @GetMapping("getReviewers")
-    public AjaxResult getReviewers() {
-        List<SysUser> reviewers = userService.selectUserByRoleKey("reviewer");
-        return success(mapToPluginUser(reviewers));
+    @GetMapping("/listPluginUser")
+    public AjaxResult listPluginUser() {
+        List<SysUser> pluginUserList = userService.selectUserByRoleKey("pluginUser1");
+        return success(mapToPluginUser(pluginUserList));
     }
 
     private List<PluginUserDto> mapToPluginUser(List<SysUser> users) {
