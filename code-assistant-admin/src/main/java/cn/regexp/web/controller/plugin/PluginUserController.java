@@ -45,7 +45,7 @@ public class PluginUserController extends BaseController {
 
     @GetMapping("/listPluginUser")
     public AjaxResult listPluginUser() {
-        List<SysUser> pluginUserList = userService.selectUserByRoleKey("pluginUser1");
+        List<SysUser> pluginUserList = userService.selectUserByRoleKey("pluginUser");
         return success(mapToPluginUser(pluginUserList));
     }
 
