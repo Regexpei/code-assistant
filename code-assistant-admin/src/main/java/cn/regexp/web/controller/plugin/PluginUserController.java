@@ -7,7 +7,6 @@ import cn.regexp.common.core.domain.model.LoginBody;
 import cn.regexp.framework.web.service.SysLoginService;
 import cn.regexp.plugin.domain.dto.PluginUserDto;
 import cn.regexp.system.service.ISysUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,11 +24,6 @@ import java.util.stream.Collectors;
 @RequestMapping("/plugin/user")
 public class PluginUserController extends BaseController {
 
-    @Autowired
-    private SysLoginService loginService;
-    @Autowired
-    private ISysUserService userService;
-
     /**
      * 插件登录方法
      *
@@ -39,13 +33,13 @@ public class PluginUserController extends BaseController {
     @PostMapping("/login")
     public AjaxResult pluginLogin(@RequestBody LoginBody loginBody) {
         // 生成令牌
-        Object token = loginService.pluginLogin(loginBody.getUsername(), loginBody.getPassword());
+        Object token = get(SysLoginService.class).pluginLogin(loginBody.getUsername(), loginBody.getPassword());
         return success(token);
     }
 
     @GetMapping("/listPluginUser")
     public AjaxResult listPluginUser() {
-        List<SysUser> pluginUserList = userService.selectUserByRoleKey("pluginUser");
+        List<SysUser> pluginUserList = get(ISysUserService.class).selectUserByRoleKey("pluginUser");
         return success(mapToPluginUser(pluginUserList));
     }
 

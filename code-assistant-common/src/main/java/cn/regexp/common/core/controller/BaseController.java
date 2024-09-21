@@ -1,26 +1,27 @@
 package cn.regexp.common.core.controller;
 
-import java.beans.PropertyEditorSupport;
-import java.util.Date;
-import java.util.List;
-
+import cn.regexp.common.constant.HttpStatus;
+import cn.regexp.common.context.AppContext;
 import cn.regexp.common.core.domain.AjaxResult;
 import cn.regexp.common.core.domain.model.LoginUser;
-import cn.regexp.common.utils.SecurityUtils;
-import cn.regexp.common.utils.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import cn.regexp.common.constant.HttpStatus;
 import cn.regexp.common.core.page.PageDomain;
 import cn.regexp.common.core.page.TableDataInfo;
 import cn.regexp.common.core.page.TableSupport;
 import cn.regexp.common.utils.DateUtils;
 import cn.regexp.common.utils.PageUtils;
+import cn.regexp.common.utils.SecurityUtils;
+import cn.regexp.common.utils.StringUtils;
 import cn.regexp.common.utils.sql.SqlUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+
+import java.beans.PropertyEditorSupport;
+import java.util.Date;
+import java.util.List;
 
 /**
  * web层通用数据处理
@@ -29,6 +30,10 @@ import cn.regexp.common.utils.sql.SqlUtil;
  */
 public class BaseController {
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    protected static <T> T get(Class<T> clazz) {
+        return AppContext.getBean(clazz);
+    }
 
     /**
      * 将前台传递过来的日期格式的字符串，自动转化为Date类型

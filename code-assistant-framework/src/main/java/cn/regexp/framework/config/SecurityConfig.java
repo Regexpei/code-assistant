@@ -1,5 +1,7 @@
 package cn.regexp.framework.config;
 
+import cn.regexp.framework.config.properties.PermitAllUrlProperties;
+import cn.regexp.framework.security.filter.JwtAuthenticationTokenFilter;
 import cn.regexp.framework.security.handle.AuthenticationEntryPointImpl;
 import cn.regexp.framework.security.handle.LogoutSuccessHandlerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +20,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.web.filter.CorsFilter;
-import cn.regexp.framework.config.properties.PermitAllUrlProperties;
-import cn.regexp.framework.security.filter.JwtAuthenticationTokenFilter;
 
 /**
  * spring security配置
@@ -109,7 +109,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((requests) -> {
                     permitAllUrl.getUrls().forEach(url -> requests.antMatchers(url).permitAll());
                     // 对于登录login 注册register 验证码captchaImage 允许匿名访问
-                    requests.antMatchers("/login", "/register", "/captchaImage", "/plugin/user/login").permitAll()
+                    requests.antMatchers("/register", "/captchaImage", "/plugin/user/login").permitAll()
                             // 静态资源，可匿名访问
                             .antMatchers(HttpMethod.GET, "/", "/*.html", "/**/*.html", "/**/*.css", "/**/*.js",
                                     "/profile/**").permitAll()
